@@ -6,6 +6,8 @@ class User < ApplicationRecord
 
   has_many :reviews, dependent: :destroy
 
+  validates :first_name, :last_name, presence: true
+
   def public_name
     "#{first_name.capitalize} #{last_name.capitalize[0]}"
   end
