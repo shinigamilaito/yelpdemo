@@ -6,6 +6,9 @@
       <%= @restaurant.name %>
     </h2>
 
+    <div class="start-rating" data-score="<%= @restaurant.avg_rating %>"></div>
+    <p><%= "#{@restaurant.reviews.count} reviews"  %></p>
+
     <p>
       <strong>Address:</strong>
       <%= @restaurant.address %>
@@ -26,10 +29,18 @@
 
   <div class="col-sm-9">
     <% if @restaurant.reviews.present? %>
-      <% @restaurant.reviews.each do |review| %>
-        <div class="start-rating" data-score="<%= review.rating %>"></div>
-        <p><%= review.comment %></p>
-      <% end %>
+      <table class="table">
+        <tbody>
+          <% @restaurant.reviews.order(created_at: :desc).each do |review| %>
+            <tr>
+              <td>
+                <div class="star-rating" data-score="<%= review.rating %>"></div>
+                <p><%= simple_format(review.comment) %></p>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
     <% else %>
       <h3>No reviews yet. Be the first to write one!</h3>
     <% end %>
@@ -40,7 +51,7 @@
 <%= link_to 'Back', restaurants_path, class: 'btn btn-link' %>
 
 <script>
-    $('.start-rating').raty({
+    $('.star-rating').raty({
         readOnly: true,
         path: "/jquery.raty/",
         score: function() {
