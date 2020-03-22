@@ -30,9 +30,20 @@
   <div class="col-sm-9">
     <% if @restaurant.reviews.present? %>
       <table class="table">
+        <thead>
+          <tr>
+            <th class="col-md-3"></th>
+            <th class="col-md-9"></th>
+          </tr>
+        </thead>
         <tbody>
           <% @restaurant.reviews.order(created_at: :desc).each do |review| %>
             <tr>
+              <td>
+                <h4><%= review.user.public_name %></h4>
+                <p><%= review.created_at.strftime("%-m/%-d/%y") %></p>
+              </td>
+
               <td>
                 <div class="star-rating" data-score="<%= review.rating %>"></div>
                 <p><%= simple_format(review.comment) %></p>

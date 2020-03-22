@@ -5,4 +5,8 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   has_many :reviews, dependent: :destroy
+
+  def public_name
+    "#{first_name.capitalize} #{last_name.capitalize[0]}"
+  end
 end
