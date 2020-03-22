@@ -1,5 +1,6 @@
 class ReviewsController < ApplicationController
   before_action :set_review, only: [:edit, :update, :destroy]
+  before_action :set_restaurant
   before_action :authenticate_user!
 
   # GET /reviews/new
@@ -16,6 +17,7 @@ class ReviewsController < ApplicationController
   def create
     @review = Review.new(review_params)
     @review.user = current_user
+    @review.restaurant = @restaurant
 
     respond_to do |format|
       if @review.save
@@ -54,6 +56,10 @@ class ReviewsController < ApplicationController
 
   private
     # Use callbacks to share common setup or constraints between actions.
+    def set_restaurant
+      @restaurant = Restaurant.find(params[:restaurant_id])
+    end
+
     def set_review
       @review = Review.find(params[:id])
     end
