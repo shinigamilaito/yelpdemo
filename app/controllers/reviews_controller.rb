@@ -10,6 +10,7 @@ class ReviewsController < ApplicationController
 
   # GET /reviews/1/edit
   def edit
+    authorize @review
   end
 
   # POST /reviews
@@ -33,6 +34,7 @@ class ReviewsController < ApplicationController
   # PATCH/PUT /reviews/1
   # PATCH/PUT /reviews/1.json
   def update
+    authorize @review
     respond_to do |format|
       if @review.update(review_params)
         format.html { redirect_to @review, notice: 'Review was successfully updated.' }
@@ -49,7 +51,7 @@ class ReviewsController < ApplicationController
   def destroy
     @review.destroy
     respond_to do |format|
-      format.html { redirect_to reviews_url, notice: 'Review was successfully destroyed.' }
+      format.html { redirect_to @restaurant, notice: 'Review was successfully destroyed.' }
       format.json { head :no_content }
     end
   end

@@ -1,5 +1,6 @@
 class RestaurantsController < ApplicationController
   before_action :set_restaurant, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!, except: [:index, :show]
 
   # GET /restaurants
   # GET /restaurants.json
@@ -15,16 +16,19 @@ class RestaurantsController < ApplicationController
   # GET /restaurants/new
   def new
     @restaurant = Restaurant.new
+    authorize(@restaurant)
   end
 
   # GET /restaurants/1/edit
   def edit
+    authorize(@restaurant)
   end
 
   # POST /restaurants
   # POST /restaurants.json
   def create
     @restaurant = Restaurant.new(restaurant_params)
+    authorize(@restaurant)
 
     respond_to do |format|
       if @restaurant.save
@@ -40,6 +44,7 @@ class RestaurantsController < ApplicationController
   # PATCH/PUT /restaurants/1
   # PATCH/PUT /restaurants/1.json
   def update
+    authorize(@restaurant)
     respond_to do |format|
       if @restaurant.update(restaurant_params)
         format.html { redirect_to @restaurant, notice: 'Restaurant was successfully updated.' }
@@ -54,6 +59,7 @@ class RestaurantsController < ApplicationController
   # DELETE /restaurants/1
   # DELETE /restaurants/1.json
   def destroy
+    authorize(@restaurant)
     @restaurant.destroy
     respond_to do |format|
       format.html { redirect_to restaurants_url, notice: 'Restaurant was successfully destroyed.' }

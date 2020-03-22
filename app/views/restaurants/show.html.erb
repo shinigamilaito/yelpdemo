@@ -47,6 +47,11 @@
               <td>
                 <div class="star-rating" data-score="<%= review.rating %>"></div>
                 <p><%= simple_format(review.comment) %></p>
+
+                <% if user_signed_in? %>
+                  <%= link_to "Edit", edit_restaurant_review_path(@restaurant, review) if policy(review).edit? %>
+                  <%= link_to "Delete", restaurant_review_path(@restaurant, review), method: :delete if policy(review).destroy? %>
+                <% end %>
               </td>
             </tr>
           <% end %>
