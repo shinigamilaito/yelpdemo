@@ -5,6 +5,8 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 
+ruby '2.6.3'
+
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.1.7'
 # Use sqlite3 as the database for Active Record
@@ -49,12 +51,6 @@ group :development do
   gem 'spring-watcher-listen', '~> 2.0.0'
 end
 
-group :production do
-  gem 'bonsai-elasticsearch-rails', '~> 7'
-  gem 'elasticsearch-model', github: 'elastic/elasticsearch-rails', branch: 'master'
-  gem 'elasticsearch-rails', github: 'elastic/elasticsearch-rails', branch: 'master'
-end
-
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'pg', group: :production
@@ -63,4 +59,4 @@ gem "fog-aws"
 gem 'mini_magick', '~> 4.10', '>= 4.10.1'
 gem 'devise', '~> 4.7', '>= 4.7.1'
 gem 'pundit', '~> 2.1'
-gem 'searchkick'
+gem 'searchkick', '~> 4.3'
