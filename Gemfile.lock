@@ -1,3 +1,14 @@
+GIT
+  remote: https://github.com/elastic/elasticsearch-rails.git
+  revision: a3ff5e3b595707e425c0aeb794b74f5e5074eac4
+  branch: master
+  specs:
+    elasticsearch-model (7.0.0)
+      activesupport (> 3)
+      elasticsearch (> 1)
+      hashie
+    elasticsearch-rails (7.0.0)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -43,6 +54,9 @@ GEM
     arel (8.0.0)
     bcrypt (3.1.13)
     bindex (0.8.1)
+    bonsai-elasticsearch-rails (7.0.1)
+      elasticsearch-model (< 8)
+      elasticsearch-rails (< 8)
     builder (3.2.4)
     byebug (11.0.1)
     capybara (3.15.1)
@@ -243,11 +257,14 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  bonsai-elasticsearch-rails (~> 7)
   byebug
   capybara (>= 2.15)
   carrierwave (~> 2.1)
   coffee-rails (~> 4.2)
   devise (~> 4.7, >= 4.7.1)
+  elasticsearch-model!
+  elasticsearch-rails!
   fog-aws
   jbuilder (~> 2.5)
   listen (>= 3.0.5, < 3.2)
