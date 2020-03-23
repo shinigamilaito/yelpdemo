@@ -57,3 +57,4 @@ gem "fog-aws"
 gem 'mini_magick', '~> 4.10', '>= 4.10.1'
 gem 'devise', '~> 4.7', '>= 4.7.1'
 gem 'pundit', '~> 2.1'
+gem 'searchkick'
