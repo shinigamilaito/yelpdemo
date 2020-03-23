@@ -91,7 +91,4 @@ Rails.application.configure do
 
   # Required for Devise gem. Remember to change localhost to actual application host.
   config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
-
-  # Setting URL searchbox with elastic
-  Elasticsearch::Model.client = Elasticsearch::Client.new host: ENV['SEARCHBOX_URL']
 end
